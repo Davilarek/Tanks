@@ -15,5 +15,17 @@ jobs:
       run: make clean all
     - uses: actions/upload-artifact@v3
       with:
-        name: Tanks
+        name: Tanks-Linux
+        path: build/bin/*
+  build-windows:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: install
+      run: call setup-sdl2.bat
+    - name: make
+      run: make clean all
+    - uses: actions/upload-artifact@v3
+      with:
+        name: Tanks-Linux
         path: build/bin/*
