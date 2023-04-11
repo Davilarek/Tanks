@@ -10,6 +10,6 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: install
-      run: sudo apt install libsdl2-dev libsdl2-ttf-dev libsdl2-image-dev
+      run: sudo apt install libsdl2-dev libsdl2-ttf-dev libsdl2-image-dev libsdl2-mixer-dev
     - name: make
       run: make clean all
