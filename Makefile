@@ -14,7 +14,7 @@ ifeq ($(OS),Windows_NT_MingW)
 	RESOURCES = $(APP_RESOURCES) mingw_resources
 else ifeq ($(OS),Windows_NT)
 	# CC = g++
-	CC = $(MINGW_HOME)/bin/mingw32-g++.exe
+	CC = mingw32-g++.exe
 	# INCLUDEPATH =
 	INCLUDEPATH = -I$(RESOURCES_DIR)/SDL/i686-w64-mingw32/include
 	LFLAGS = -mwindows -O
