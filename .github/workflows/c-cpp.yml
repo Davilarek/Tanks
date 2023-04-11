@@ -1,0 +1,15 @@
+name: C/C++ CI
+
+on:
+  push:
+    branches: [ "master" ]
+
+jobs:
+  build-linux:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: install
+      run: sudo apt install libsdl2-dev libsdl2-ttf-dev libsdl2-image-dev
+    - name: make
+      run: make clean all
