@@ -28,7 +28,7 @@ jobs:
       with:
         platform: x86
     - name: make
-      run: make clean all
+      run: mingw32-make.exe clean all
     - uses: actions/upload-artifact@v3
       with:
         name: Tanks-Linux
