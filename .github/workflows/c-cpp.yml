@@ -31,5 +31,5 @@ jobs:
       run: make clean all
     - uses: actions/upload-artifact@v3
       with:
-        name: Tanks-Linux
+        name: Tanks-Windows
         path: build/bin/*
