@@ -12,6 +12,19 @@ ifeq ($(OS),Windows_NT_MingW)
 	LIBS = -L$(RESOURCES_DIR)/SDL/i686-w64-mingw32/lib -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_ttf
 	APP_RESOURCES = SDL/i686-w64-mingw32/bin/*.dll dll/*.dll font/prstartk.ttf png/texture.png levels
 	RESOURCES = $(APP_RESOURCES) mingw_resources
+else ifeq ($(OS),Windows_NT)
+	# CC = g++
+	CC = $(MINGW_HOME)/bin/mingw32-g++.exe
+	# INCLUDEPATH =
+	INCLUDEPATH = -I$(RESOURCES_DIR)/SDL/i686-w64-mingw32/include
+	LFLAGS = -mwindows -O
+	# CFLAGS = -c -Wall -std=c++11 -I$(RESOURCES_DIR)/SDL/i686-w64-mingw32/include
+	CFLAGS = -c -Wall -std=c++11
+	# LIBS = -L$(RESOURCES_DIR)/SDL/i686-w64-mingw32/lib -lSDL2main -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer
+	LIBS = -L$(RESOURCES_DIR)/SDL/i686-w64-mingw32/lib -lSDL2main -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer
+	# APP_RESOURCES = SDL/i686-w64-mingw32/bin/*.dll dll/*.dll font/prstartk.ttf png/texture.png levels sounds
+	APP_RESOURCES = SDL/i686-w64-mingw32/bin/*.dll font/prstartk.ttf png/texture.png levels sounds
+	RESOURCES = $(APP_RESOURCES)
 else
 	CC = g++
 	INCLUDEPATH =
