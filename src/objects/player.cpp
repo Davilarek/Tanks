@@ -37,25 +37,30 @@ void Player::update(Uint32 dt)
 
     if(key_state != nullptr && !testFlag(TSF_MENU))
     {
+        bool move = false;
         if(key_state[player_keys.up])
         {
             setDirection(D_UP);
             speed = default_speed;
+            move = true;
         }
         else if(key_state[player_keys.down])
         {
             setDirection(D_DOWN);
             speed = default_speed;
+            move = true;
         }
         else if(key_state[player_keys.left])
         {
             setDirection(D_LEFT);
             speed = default_speed;
+            move = true;
         }
         else if(key_state[player_keys.right])
         {
             setDirection(D_RIGHT);
             speed = default_speed;
+            move = true;
         }
         else
         {
@@ -63,11 +68,28 @@ void Player::update(Uint32 dt)
                 speed = 0.0;
         }
 
+        if (move == true)
+        {
+            Mix_Pause(SND_hold);
+            Mix_Resume(SND_move);
+        }
+        else
+        {
+            Mix_Pause(SND_move);
+            Mix_Resume(SND_hold);
+        }
+
         if(key_state[player_keys.fire] && m_fire_time > AppConfig::player_reload_time)
         {
             fire();
             m_fire_time = 0;
         }
+    }
+
+    if (testFlag(TSF_MENU))
+    {
+        Mix_Pause(SND_move);
+        Mix_Pause(SND_hold);
     }
 
     m_fire_time += dt;
@@ -110,6 +132,12 @@ void Player::respawn()
     Tank::respawn();
     setFlag(TSF_SHIELD);
     m_shield_time = AppConfig::tank_shield_time / 2;
+
+    // pre-load
+    Mix_PlayChannel(SND_move, AppConfig::sounds[SND_move], 0);
+    Mix_PlayChannel(SND_hold, AppConfig::sounds[SND_hold], 0);
+    Mix_Pause(SND_move);
+    Mix_Pause(SND_hold);
 }
 
 void Player::destroy()

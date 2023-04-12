@@ -39,10 +39,13 @@ void App::run()
         if(!(IMG_Init(IMG_INIT_PNG) & IMG_INIT_PNG)) return;
         if(TTF_Init() == -1) return;
         if(Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, 2, 512)<0) return;
-        if(Mix_AllocateChannels(4)<0) return;
+        // if(Mix_AllocateChannels(4)<0) return;
+        if(Mix_AllocateChannels(6)<0) return;
         AppConfig::sounds[SND_start] = Mix_LoadWAV("sounds/start.wav");
         AppConfig::sounds[SND_fire] = Mix_LoadWAV("sounds/fire.wav");
         AppConfig::sounds[SND_hit] = Mix_LoadWAV("sounds/hit.wav");
+        AppConfig::sounds[SND_hold] = Mix_LoadWAV("sounds/hold.wav");
+        AppConfig::sounds[SND_move] = Mix_LoadWAV("sounds/move.wav");
 
         srand(time(NULL)); //inicjowanie generatora pseudolosowego
 

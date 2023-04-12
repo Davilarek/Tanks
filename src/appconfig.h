@@ -13,6 +13,8 @@ enum sound_type {
     SND_start,
     SND_fire,
     SND_hit,
+    SND_move,
+    SND_hold,
     SND_MAX
 };
 
